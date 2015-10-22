@@ -27,3 +27,6 @@ def configure(cnf):
         cnf.env.LINKFLAGS = ['-fsanitize=address']
 
     cnf.load('gnu_dirs compiler_c vala glib2')
+
+    cnf.check_cfg(package='gtk+-3.0', uselib_store='GTK', args='--cflags --libs', mandatory=True)
+    cnf.check_cfg(package='gmodule-export-2.0', uselib_store='GMODULE', args='--libs', mandatory=True)
