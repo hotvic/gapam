@@ -1,0 +1,36 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+
+def configure(cnf):
+    if cnf.options.debug:
+        cnf.env.CFLAGS += ['-g3', '-O0', '-Wall']
+
+        if cnf.options.clang and cnf.options.debug_as:
+            cnf.env.CFLAGS += ['-fsanitize=address']
+            cnf.env.LINKFLAGS += ['-fsanitize=address']
+
+
+def build(bld):
+    libgapam = bld(
+        features         = 'c cstlib',
+        target           = 'lgapam',
+        vala_target_glib = '2.38',
+        install_binding  = False,
+        packages         = 'gtk+-3.0 posix libarchive',
+        uselib           = 'GTK',
+        vala_resources   = '../data/gapam.gresource.xml',
+        vapi_dirs        = '.',
+        includes         = '.',
+    )
+    libgapam.source = 'Application.vala MainWindow.vala Preferences.vala Utils.vala'
+
+    gapam = bld(
+        features       = 'c cprogram glib2',
+        target         = 'gapam',
+        uselib         = 'M GTK GMODULE ARCHIVE',
+        use            = 'lgapam',
+        includes       = '.',
+        source         = '../data/gapam.gresource.xml'
+    )
+    gapam.source += ' Gapam.vala'

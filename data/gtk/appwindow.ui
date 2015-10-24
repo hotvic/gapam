@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="gapam">
+    <requires lib="gtk+" version="3.12"/>
+
+    <!-- GapamMainWindow Template -->
+    <template class="GapamMainWindow" parent="GtkApplicationWindow">
+        <property name="title" translatable="yes">GAP Archive Manager</property>
+        <property name="icon_name">gapam</property>
+        <property name="default-height">500</property>
+        <property name="default-width">600</property>
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="GtkScrolledWindow">
+                        <child>
+                            <object class="GtkTreeView" id="tv_files">
+                                <child>
+                                    <object class="GtkTreeViewColumn">
+                                        <property name="title">Filename</property>
+                                        <child>
+                                            <object class="GtkCellRendererText" id="filename-renderer" />
+                                            <attributes>
+                                                <attribute name="text">0</attribute>
+                                            </attributes>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkTreeViewColumn">
+                                        <property name="title">Size</property>
+                                        <child>
+                                            <object class="GtkCellRendererText" id="size-renderer" />
+                                            <attributes>
+                                                <attribute name="text">1</attribute>
+                                            </attributes>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkTreeViewColumn">
+                                        <property name="title">Mode</property>
+                                        <child>
+                                            <object class="GtkCellRendererText" id="mode-renderer" />
+                                            <attributes>
+                                                <attribute name="text">2</attribute>
+                                            </attributes>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkTreeViewColumn">
+                                        <property name="title">Modified at</property>
+                                        <child>
+                                            <object class="GtkCellRendererText" id="mtime-renderer" />
+                                            <attributes>
+                                                <attribute name="text">3</attribute>
+                                            </attributes>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkTreeViewColumn">
+                                        <property name="title">Created at</property>
+                                        <child>
+                                            <object class="GtkCellRendererText" id="birthtime-renderer" />
+                                            <attributes>
+                                                <attribute name="text">4</attribute>
+                                            </attributes>
+                                        </child>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                    <packing>
+                        <property name="expand">true</property>
+                        <property name="fill">true</property>
+                    </packing>
+                </child>
+                <child>
+                    <object class="GtkEntry" id="en_uri">
+                        <property name="hexpand">true</property>
+                    </object>
+                    <packing>
+                        <property name="expand">false</property>
+                        <property name="fill">false</property>
+                    </packing>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>

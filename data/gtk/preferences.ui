@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="gapam">
+    <requires lib="gtk+" version="3.10"/>
+
+    <template class="GapamPreferences" parent="GtkWindow">
+    </template>
+</interface>
